@@ -12,7 +12,7 @@
     button:hover { background: #0c0; }
     #balance { font-size: 28px; color: #0f0; margin: 30px 0; }
     #status { color: #ff0; font-size: 20px; }
-    #ad-container { margin: 20px auto; max-width: 320px; min-height: 100px; border: 1px solid #0f0; background: #111; }
+    #ad-container { margin: 20px auto; max-width: 320px; min-height: 100px; border: 1px solid #0f0; background: #111; display: flex; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
@@ -26,24 +26,28 @@
 
   <button onclick="requestWithdraw()">Вывести от 10$ (Google Play 5 евро)</button>
 
-  <!-- Новый блок для рекламы Adsterra -->
+  <!-- Adsterra Native Banner -->
   <div id="ad-container">
     <script async src="https://pl28761547.effectivegatecpm.com/c583a6d4d432907e8d76dce21dddb1/invoke.js"></script>
     <div id="container-c583a6d4d432907e8d76dce21dddb1"></div>
   </div>
 
   <script>
-    // Проверка, загрузилась ли реклама
+    // Проверка загрузки рекламы
     window.addEventListener('load', () => {
       setTimeout(() => {
-        if (document.getElementById('container-c583a6d4d432907e8d76dce21dddb1').innerHTML === '') {
-          document.getElementById('status').innerText = 'Реклама не загрузилась... попробуй обновить страницу';
+        const adDiv = document.getElementById('container-c583a6d4d432907e8d76dce21dddb1');
+        if (adDiv.innerHTML.trim() === '') {
+          document.getElementById('status').innerText = 'Баннер не загрузился... попробуй обновить страницу или VPN';
+        } else {
+          document.getElementById('status').innerText = 'Реклама загружена! Кликай на неё или смотри ролики';
         }
-      }, 5000);
+      }, 8000); // 8 сек на загрузку
     });
 
     function showAd() {
       document.getElementById('status').innerText = 'Открываю рекламу...';
+      // Симуляция (пока нет реального rewarded)
       setTimeout(() => {
         document.getElementById('status').innerText = 'Досмотрено! +0.02$';
         updateBalance(0.02);
@@ -59,7 +63,7 @@
     function requestWithdraw() {
       let bal = parseFloat(document.getElementById('balance').innerText.split(': ')[1]);
       if (bal >= 10) {
-        document.getElementById('status').innerText = 'Готово! Кидай скрин в @MatveyLc — пришлю код Google Play 5 евро!';
+        document.getElementById('status').innerText = 'Готово! Кидай скрин баланса в @MatveyLc — пришлю код Google Play 5 евро!';
       } else {
         document.getElementById('status').innerText = 'Недостаточно! Нужно минимум 10$.';
       }
