@@ -3,40 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Зарабатывай на рекламе — 0.02$ за ролик</title>
+  <title>Зарабатывай на рекламе</title>
   <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      text-align: center;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    body { 
+      margin: 0; 
+      padding: 20px; 
+      font-family: Arial; 
+      background: #000; 
+      color: #fff; 
+      text-align: center; 
+      height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
     }
     h1 { color: #0f0; margin-bottom: 10px; }
     p { font-size: 18px; margin: 10px 0; }
-    button {
-      background: #0f0;
-      color: #000;
-      border: none;
-      padding: 15px 30px;
-      font-size: 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      margin: 20px 0;
+    button { 
+      background: #0f0; 
+      color: #000; 
+      border: none; 
+      padding: 15px 30px; 
+      font-size: 20px; 
+      border-radius: 10px; 
+      cursor: pointer; 
+      margin: 20px 0; 
     }
     button:hover { background: #0c0; }
     #balance { font-size: 28px; color: #0f0; margin: 30px 0; }
     #status { color: #ff0; font-size: 20px; }
+    #ad-container { margin: 30px auto; max-width: 300px; }
   </style>
 </head>
 <body>
   <h1>Смотри рекламу — копи бабки!</h1>
-  <p>За один ролик — +0.02$ на баланс. Минимум вывода — 10$</p>
+  <p>За просмотр рекламы — +0.02$ на баланс. Минимум вывода — 10$</p>
   
   <button onclick="showAd()">Смотреть рекламу</button>
   
@@ -45,17 +46,20 @@
 
   <button onclick="requestWithdraw()">Вывести от 10$ (Google Play 5 евро)</button>
 
-  <!-- Здесь будет код от Adsterra — вставь его сюда ↓ -->
-  <!-- <script async src="https://adsterra.com/script.js?id=ТВОЙ_ID"></script> -->
+  <!-- Реклама от Adsterra - Native Banner -->
+  <div id="ad-container">
+    <script async src="https://pl28761547.effectivegatecpm.com/c583a6d4d432907e8d76dce21dddb1/invoke.js"></script>
+    <div id="container-c583a6d4d432907e8d76dce21dddb1"></div>
+  </div>
 
   <script>
-    // Пока без реальной рекламы — симуляция (потом замени на Adsterra)
+    // Симуляция награды (потом сделаем реальную от Adsterra)
     function showAd() {
-      document.getElementById('status').innerText = 'Открываю рекламу...';
+      document.getElementById('status').innerText = 'Реклама загружается...';
       setTimeout(() => {
         document.getElementById('status').innerText = 'Досмотрено! +0.02$';
         updateBalance(0.02);
-      }, 5000); // 5 сек — как ролик
+      }, 5000);
     }
 
     function updateBalance(amount) {
