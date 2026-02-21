@@ -5,39 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Зарабатывай на рекламе</title>
   <style>
-    body { 
-      margin: 0; 
-      padding: 20px; 
-      font-family: Arial; 
-      background: #000; 
-      color: #fff; 
-      text-align: center; 
-      height: 100vh; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: center; 
-    }
+    body { margin: 0; padding: 20px; font-family: Arial; background: #000; color: #fff; text-align: center; height: 100vh; display: flex; flex-direction: column; justify-content: center; }
     h1 { color: #0f0; margin-bottom: 10px; }
     p { font-size: 18px; margin: 10px 0; }
-    button { 
-      background: #0f0; 
-      color: #000; 
-      border: none; 
-      padding: 15px 30px; 
-      font-size: 20px; 
-      border-radius: 10px; 
-      cursor: pointer; 
-      margin: 20px 0; 
-    }
+    button { background: #0f0; color: #000; border: none; padding: 15px 30px; font-size: 20px; border-radius: 10px; cursor: pointer; margin: 20px 0; }
     button:hover { background: #0c0; }
     #balance { font-size: 28px; color: #0f0; margin: 30px 0; }
     #status { color: #ff0; font-size: 20px; }
-    #ad-container { margin: 30px auto; max-width: 300px; }
+    #ad-container { margin: 20px auto; max-width: 320px; min-height: 100px; border: 1px solid #0f0; background: #111; }
   </style>
 </head>
 <body>
   <h1>Смотри рекламу — копи бабки!</h1>
-  <p>За просмотр рекламы — +0.02$ на баланс. Минимум вывода — 10$</p>
+  <p>За просмотр — +0.02$ на баланс. Минимум вывода — 10$</p>
   
   <button onclick="showAd()">Смотреть рекламу</button>
   
@@ -46,16 +26,24 @@
 
   <button onclick="requestWithdraw()">Вывести от 10$ (Google Play 5 евро)</button>
 
-  <!-- Реклама от Adsterra - Native Banner -->
+  <!-- Новый блок для рекламы Adsterra -->
   <div id="ad-container">
     <script async src="https://pl28761547.effectivegatecpm.com/c583a6d4d432907e8d76dce21dddb1/invoke.js"></script>
     <div id="container-c583a6d4d432907e8d76dce21dddb1"></div>
   </div>
 
   <script>
-    // Симуляция награды (потом сделаем реальную от Adsterra)
+    // Проверка, загрузилась ли реклама
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (document.getElementById('container-c583a6d4d432907e8d76dce21dddb1').innerHTML === '') {
+          document.getElementById('status').innerText = 'Реклама не загрузилась... попробуй обновить страницу';
+        }
+      }, 5000);
+    });
+
     function showAd() {
-      document.getElementById('status').innerText = 'Реклама загружается...';
+      document.getElementById('status').innerText = 'Открываю рекламу...';
       setTimeout(() => {
         document.getElementById('status').innerText = 'Досмотрено! +0.02$';
         updateBalance(0.02);
@@ -71,7 +59,7 @@
     function requestWithdraw() {
       let bal = parseFloat(document.getElementById('balance').innerText.split(': ')[1]);
       if (bal >= 10) {
-        document.getElementById('status').innerText = 'Готово! Кидай скрин баланса в @MatveyLc — пришлю код Google Play 5 евро через 1–2 дня!';
+        document.getElementById('status').innerText = 'Готово! Кидай скрин в @MatveyLc — пришлю код Google Play 5 евро!';
       } else {
         document.getElementById('status').innerText = 'Недостаточно! Нужно минимум 10$.';
       }
